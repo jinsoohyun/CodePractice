@@ -13,7 +13,6 @@ int main(void)
 {
     int T, test_case;
     setbuf(stdout, NULL);
-
     scanf("%d", &T);
     for(test_case = 0; test_case < T; test_case++)
     {
