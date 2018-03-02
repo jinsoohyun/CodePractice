@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 1001
+#define MAX 1000001
 int* iptr;
 
+//generate prime abot MAX range
 void makePrime(){
 
     int i, j;
@@ -22,23 +23,20 @@ void makePrime(){
     }
 }
 
-int main(void){
-
+int main(int argc, char *argv[]){
     makePrime();
-    int T, i;
-    int count = 0;
-    int *tmp;
-    scanf("%d", &T);
-    tmp = (int*) malloc(sizeof(int)*T);
 
-    for(i = 0; i < T; i++){
-        int num = 0;
-        scanf("%d",&num);
-        if(iptr[num]==0)
-            count += 1;
+    int numA, numB;
+    int result = 0;
 
+    scanf("%d %d",&numA, &numB);
+
+    //iptr[x] == 0 is Prime
+    for (;numA <= numB;numA++){
+        if (iptr[numA] == 0){
+            printf("%d\n",numA);
+        }
     }
-    printf("%d\n",count);
 
     return 0;
 }
