@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define MAX 5001
+#define MAX 10001
 int* iptr;
 
 //generate prime abot MAX range
@@ -22,36 +22,25 @@ void makePrime(){
     }
 }
 
+void gbPartition(int n){
+    int i,j,mid = n/2;
+    for(i=j=mid; i<=n; i--, j++)
+        if (iptr[i] == 0 && iptr[j] == 0){
+            printf("%d %d\n",i,j);
+            return;
+        }
+
+}
+
 int main(int argc, char *argv[]){
+    //generate prime
     makePrime();
-    int T, numA, flag, min, tmp;
-    int resultm, resultn;
+    int T, numA;
     scanf("%d",&T);
 
-
     for (int i=0;i<T;i++){
-        min = 0;
-        tmp = 0;
         scanf("%d",&numA);
-        for (int n=2;n<=numA/2+1;n++){
-            for (int m=2;m<=numA;m++){
-                if (n>2 && n%2 ==0)
-                    break;
-                if (m>2 && m%2 ==0)
-                    continue;
-
-                if(n+m == numA && iptr[n] == 0 && iptr[m] == 0){
-                    min = m-n;
-                    //printf("min : %d\n",min);
-                    if (min <= tmp){
-                        resultm = m;
-                        resultn = n;
-                    }
-                    tmp = min;
-                }
-            }
-        }
-        printf("%d %d\n",resultn,resultm);
+        gbPartition(numA);
     }
 
     return 0;
