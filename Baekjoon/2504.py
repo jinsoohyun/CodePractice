@@ -27,12 +27,63 @@ def chkPair(tmp):
 PS = raw_input()
 
 dic = {'()':2, '[]':3}
-result = 1
-tmp = ''
+result = []
+tmp = 0
+stackList = []
+pop = 0
+#stackList = list(PS[::-1])
+
+
+if (isVPS(PS)):
+    #([([]())])
+    #([([3
+    #([([3 )])
+    # (()()(()))
+    # (2 2 4
+    for i in PS:
+        tmp = 0
+        #print "[!]",stackList, i
+        if (i == '[' or i == '('):
+            stackList.append(i)
+
+        else:
+            # 맨 위가. 숫자인 경우
+            '''
+            if str(stackList[-1]).isdigit():
+                tmp += stackList.pop()
+
+                #stackList.append(tmp)
+            '''
+
+            pop = stackList.pop()
+            while pop != '[' and pop != '(':
+                tmp += int(pop)
+                pop = stackList.pop()
+
+            # 맨 위가 숫자가 아닌 경우
+            if (i == ')'):
+                if (tmp == 0):
+                    stackList.append(2)
+                else:
+                    stackList.append(tmp*2)
+
+            else:
+                print "[=]"
+                if (tmp == 0):
+                    stackList.append(3)
+                else:
+                    stackList.append(tmp*3)
+
+                    #tmp *= 2
+                    #stackList.pop()
+                    #stackList.append(tmp)
+
+    print sum(stackList)
+'''
 if (isVPS(PS)):
     for i in PS:
         tmp += i
-        print "[+]", tmp
+        #print "[+]", tmp
         if(len(tmp) > 1):
             if(dic.has_key(tmp[-2:])):
                 if "()" in tmp:
@@ -40,12 +91,23 @@ if (isVPS(PS)):
                 elif "[]" in tmp:
                     tmp = tmp.replace("[]","3")
 
+                print "[+]", tmp
+                if (tmp[-1] == ']' or tmp[-1] == ')'):
+                    if tmp[-1] == ']':
+                        result *= 3
+                        tmp = tmp[:-3]
+
+                    elif tmp[-1] == ')':
+                        result *= 2
+                        tmp = tmp[:-3]
+
+
                 if tmp[-1].isdigit():
-                    result *= int(tmp[-1])
+                    result += int(tmp[-1])
                     tmp = tmp[:-1]
                 #print "[+]",tmp
         print result
-
+'''
 
 '''
 tmp = PS
