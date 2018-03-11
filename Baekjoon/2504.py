@@ -18,28 +18,15 @@ def isVPS(PS):
     print 0
     exit(0)
 
-def chkPair(tmp):
-    tmp = tmp.replace('()','2')
-    tmp = tmp.replace('[]','3')
-    return tmp
-
-#([)]
 PS = raw_input()
 
-dic = {'()':2, '[]':3}
 result = []
-tmp = 0
 stackList = []
-pop = 0
-#stackList = list(PS[::-1])
 
+tmp = 0
+pop = 0
 
 if (isVPS(PS)):
-    #([([]())])
-    #([([3
-    #([([3 )])
-    # (()()(()))
-    # (2 2 4
     for i in PS:
         tmp = 0
         #print "[!]",stackList, i
@@ -48,13 +35,6 @@ if (isVPS(PS)):
 
         else:
             # 맨 위가. 숫자인 경우
-            '''
-            if str(stackList[-1]).isdigit():
-                tmp += stackList.pop()
-
-                #stackList.append(tmp)
-            '''
-
             pop = stackList.pop()
             while pop != '[' and pop != '(':
                 tmp += int(pop)
@@ -68,55 +48,9 @@ if (isVPS(PS)):
                     stackList.append(tmp*2)
 
             else:
-                print "[=]"
                 if (tmp == 0):
                     stackList.append(3)
                 else:
                     stackList.append(tmp*3)
 
-                    #tmp *= 2
-                    #stackList.pop()
-                    #stackList.append(tmp)
-
     print sum(stackList)
-'''
-if (isVPS(PS)):
-    for i in PS:
-        tmp += i
-        #print "[+]", tmp
-        if(len(tmp) > 1):
-            if(dic.has_key(tmp[-2:])):
-                if "()" in tmp:
-                    tmp = tmp.replace("()","2")
-                elif "[]" in tmp:
-                    tmp = tmp.replace("[]","3")
-
-                print "[+]", tmp
-                if (tmp[-1] == ']' or tmp[-1] == ')'):
-                    if tmp[-1] == ']':
-                        result *= 3
-                        tmp = tmp[:-3]
-
-                    elif tmp[-1] == ')':
-                        result *= 2
-                        tmp = tmp[:-3]
-
-
-                if tmp[-1].isdigit():
-                    result += int(tmp[-1])
-                    tmp = tmp[:-1]
-                #print "[+]",tmp
-        print result
-'''
-
-'''
-tmp = PS
-if (isVPS(tmp)):
-    while(1):
-        if ("(" not in tmp or "[" not in tmp):
-            break
-
-        else:
-            tmp = chkPair(tmp)
-
-'''
