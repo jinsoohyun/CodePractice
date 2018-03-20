@@ -10,6 +10,11 @@ for i in range(M):
     graph[d1].append(d2)
     graph[d2].append(d1)
 
+for i in range(M):
+    graph[d1].sort()
+    graph[d2].sort()
+
+#print graph
 
 def BFS(graph, root, N):
   visited = [] # 방문한 곳을 기록
@@ -20,8 +25,8 @@ def BFS(graph, root, N):
 
     if vertex not in visited: # 꼭짓점이 방문된 적이 없다면 방문 기록에 추가
       visited.append(vertex)
-      if (len(visited) == N):
-          return visited
+      #if (len(visited) == N):
+      #    return visited
 
       for node in graph[vertex]: # 꼭짓점에 연결된 노드들 중
         if node not in visited: # 방문 안 된 곳 만을
@@ -36,9 +41,11 @@ def DFS(graph, root, N):
     stack.extend(root)
     while(stack):
         outputFromStack = stack.pop()
+
+        if outputFromStack in visited:
+          break
+
         visited.extend(outputFromStack)
-        if (len(visited) == N):
-          return visited
 
         inputToStack = list(set(graph[outputFromStack]) - set(visited))
         inputToStack.sort()
