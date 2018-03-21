@@ -1,6 +1,6 @@
 #-*-coding: utf-8-*-
 graph = {}
-
+고
 N, M, V = map(int,raw_input().split(' '))
 
 #generate dictionary

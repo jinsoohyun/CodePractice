@@ -1,4 +1,4 @@
-#참고
+#참
 visit = {}
 visit2 = {}
 load = {}
